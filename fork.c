@@ -2,11 +2,22 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
+// #include <sys/wait.h>
 
-int bubbleSort(int arr[],int num,pid_t pid){
-    
+void swap(int* x, int* y){
+    int temp =*x;
+    *x = *y;
+    *y = temp;
+}
+
+int bubbleSort(int arr[],int num){
+    for(int i = 0; i < num; i++){
+        for(int j = 0; j < num-1-i; j++){
+            if(arr[j]>arr[j+1]){
+                swap(&arr[j],&arr[j+1]);
+            }
+        }
+    }
     return 0;
 }
 
@@ -34,13 +45,15 @@ int main(){
         for(int i=num-1;i>=0;i--){
             printf("%d\t",arr[i]);
         }
+        printf("\n");
     } else if(pid>1){
-        printf("\nParent Sort- Ascending");
+        printf("\nParent Sort- Ascending\n");
         bubbleSort(arr,num);
         for(int i=0;i<num;i++){
             printf("%d\t",arr[i]);
         }
-        wait(NULL);
+        printf("\n");
+        // wait(NULL);
     } else{
         printf("\nFork() failed!");
     }
