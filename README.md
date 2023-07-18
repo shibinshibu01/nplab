@@ -1,3 +1,2 @@
 # nplab
-Netwroking Lab!
-Btech S6
+Netwroking Lab! Btech S6
